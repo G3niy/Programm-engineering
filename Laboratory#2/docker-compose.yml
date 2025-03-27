@@ -1,0 +1,15 @@
+
+services:
+  user-service:
+    build:
+      context: .
+      dockerfile: JWT/Dockerfile
+    ports:
+      - "8000:8000"
+
+  orders-service:
+    build:
+      context: .
+      dockerfile: Services/Dockerfile
+    ports:
+      - "8002:8002"

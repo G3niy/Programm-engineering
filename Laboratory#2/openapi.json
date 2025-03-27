@@ -1,0 +1,592 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "FastAPI",
+      "version": "0.1.0"
+    },
+    "paths": {
+      "/api/v1/OrdersAndServices/create_service": {
+        "post": {
+          "tags": [
+            "OrdersAndServices"
+          ],
+          "summary": "Create Service",
+          "operationId": "create_service_api_v1_OrdersAndServices_create_service_post",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Name"
+              }
+            },
+            {
+              "name": "desc",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Desc"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/OrdersAndServices/get_services": {
+        "get": {
+          "tags": [
+            "OrdersAndServices"
+          ],
+          "summary": "Get Services",
+          "operationId": "get_services_api_v1_OrdersAndServices_get_services_get",
+          "parameters": [
+            {
+              "name": "db_services",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "title": "Db Services"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/OrdersAndServices/add_service_to_order": {
+        "post": {
+          "tags": [
+            "OrdersAndServices"
+          ],
+          "summary": "Add Service",
+          "operationId": "add_service_api_v1_OrdersAndServices_add_service_to_order_post",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Name"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/OrdersAndServices/get_user_order": {
+        "get": {
+          "tags": [
+            "OrdersAndServices"
+          ],
+          "summary": "Get User Order",
+          "operationId": "get_user_order_api_v1_OrdersAndServices_get_user_order_get",
+          "security": [
+            {
+              "OAuth2PasswordBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "db_orders",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "title": "Db Orders"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/token": {
+        "post": {
+          "summary": "Login For Access Token",
+          "operationId": "login_for_access_token_token_post",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users": {
+        "get": {
+          "summary": "Get Users",
+          "operationId": "get_users_users_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "type": "array",
+                    "title": "Response Get Users Users Get"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "OAuth2PasswordBearer": []
+            }
+          ]
+        },
+        "post": {
+          "summary": "Create User",
+          "operationId": "create_user_users_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "OAuth2PasswordBearer": []
+            }
+          ]
+        }
+      },
+      "/users/{user_id}": {
+        "get": {
+          "summary": "Get User",
+          "operationId": "get_user_users__user_id__get",
+          "security": [
+            {
+              "OAuth2PasswordBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update User",
+          "operationId": "update_user_users__user_id__put",
+          "security": [
+            {
+              "OAuth2PasswordBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete User",
+          "operationId": "delete_user_users__user_id__delete",
+          "security": [
+            {
+              "OAuth2PasswordBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "User Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Body_login_for_access_token_token_post": {
+          "properties": {
+            "grant_type": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^password$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Grant Type"
+            },
+            "username": {
+              "type": "string",
+              "title": "Username"
+            },
+            "password": {
+              "type": "string",
+              "title": "Password"
+            },
+            "scope": {
+              "type": "string",
+              "title": "Scope",
+              "default": ""
+            },
+            "client_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Id"
+            },
+            "client_secret": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Secret"
+            }
+          },
+          "type": "object",
+          "required": [
+            "username",
+            "password"
+          ],
+          "title": "Body_login_for_access_token_token_post"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "User": {
+          "properties": {
+            "id": {
+              "type": "integer",
+              "title": "Id"
+            },
+            "username": {
+              "type": "string",
+              "title": "Username"
+            },
+            "email": {
+              "type": "string",
+              "title": "Email"
+            },
+            "hashed_password": {
+              "type": "string",
+              "title": "Hashed Password"
+            },
+            "age": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Age"
+            }
+          },
+          "type": "object",
+          "required": [
+            "id",
+            "username",
+            "email",
+            "hashed_password"
+          ],
+          "title": "User"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      },
+      "securitySchemes": {
+        "OAuth2PasswordBearer": {
+          "type": "oauth2",
+          "flows": {
+            "password": {
+              "scopes": {
+  
+              },
+              "tokenUrl": "token"
+            }
+          }
+        }
+      }
+    }
+  }
