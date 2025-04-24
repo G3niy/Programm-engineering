@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: testdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  mongodb:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  db:
+    build:
+      context: .
+      dockerfile: db/Dockerfile
+    depends_on:
+      postgres:
+        condition: service
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: Lab4
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+  user:
+    build:
+      context: .
+      dockerfile: users/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: testdb
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+
+  orders:
+    build:
+      context: .
+      dockerfile: orders/Dockerfile
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: testdb
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+
+  services:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    ports:
+      - "5002:5002"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: testdb
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+
+volumes:
+  postgres_data:
+  mongodb_data:
